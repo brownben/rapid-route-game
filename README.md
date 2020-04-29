@@ -1,6 +1,6 @@
 <div align="center">
 
-# Rapid Route Gamme
+# Rapid Route Game
 
 ## Draw the Shortest Route
 
