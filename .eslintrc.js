@@ -1,25 +1,53 @@
 module.exports = {
-  root: true,
+  extends: ['alloy', 'alloy/vue'],
+
   env: {
-    node: true
+    browser: true,
+    node: true,
+    jest: true,
+    es6: true,
   },
-  extends: ["plugin:vue/essential", "eslint:recommended", "@vue/prettier"],
+
+  globals: {
+    document: false,
+    navigator: false,
+    window: false,
+    global: true,
+  },
+
   parserOptions: {
-    parser: "babel-eslint"
+    ecmaVersion: 2018,
+    sourceType: 'module',
+    parser: 'babel-eslint',
   },
+
   rules: {
-    "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
-    "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off"
+    camelcase: ['error', { properties: 'never' }],
+    radix: 'off',
+    complexity: 'off',
+    'default-param-last': 'error',
+    'dot-notation': 'error',
+    'no-console': 'warn',
+    'no-lonely-if': 'error',
+    'no-plusplus': 'error',
+    'no-unneeded-ternary': 'error',
+    'no-ternary': 'error',
+    'no-useless-return': 'error',
+    'prefer-spread': 'error',
+    'prefer-template': 'error',
+    'require-await': 'error',
+    'sort-vars': 'error',
+    'max-params': ['error', { max: 4 }],
+    'vue/component-tags-order': [
+      'error',
+      { order: ['template', 'script', 'style'] },
+    ],
+    'vue/no-duplicate-attributes': [
+      'error',
+      {
+        allowCoexistClass: true,
+        allowCoexistStyle: false,
+      },
+    ],
   },
-  overrides: [
-    {
-      files: [
-        "**/__tests__/*.{j,t}s?(x)",
-        "**/tests/unit/**/*.spec.{j,t}s?(x)"
-      ],
-      env: {
-        jest: true
-      }
-    }
-  ]
-};
+}

@@ -1,0 +1,92 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+html,
+body,
+#app {
+  @apply h-full w-full;
+}
+
+img {
+  height: calc(100vh - 17rem);
+  max-height: 500px;
+
+  @apply inline-block my-3;
+}
+
+input:focus {
+  @apply border-blue-800;
+}
+
+.heading {
+  @apply font-main  font-bold my-2;
+}
+
+.button {
+  @apply bg-blue-500 text-center font-main text-white px-4 py-1 mt-4 text-base rounded-md inline-block select-none;
+  transition: 0.5s;
+}
+
+.button:hover {
+  @apply shadow-xl;
+}
+
+.button.red {
+  @apply bg-red-500;
+}
+.button.green {
+  @apply bg-green-500;
+}
+.button.blue {
+  @apply bg-blue-500;
+}
+.button.pink {
+  @apply bg-pink-500;
+}
+.button.red:hover {
+  @apply bg-red-600;
+}
+.button.green:hover {
+  @apply bg-green-600;
+}
+.button.blue:hover {
+  @apply bg-blue-600;
+}
+.button.pink:hover {
+  @apply bg-pink-600;
+}
+
+.button.white {
+  @apply bg-white border-2 border-gray-400 text-gray-500;
+}
+.button.white:hover {
+  @apply shadow-md bg-gray-100;
+}
+.button.white.small {
+  @apply py-1 px-2 text-sm;
+}
+
+.choices .button {
+  @apply p-3 w-24 m-4 font-bold text-2xl text-center;
+}
+
+@media (max-width: 768px) {
+  .choices {
+    @apply flex flex-row justify-around;
+  }
+  .choices .button {
+    width: 30%;
+    @apply m-0 inline;
+  }
+}
+
+.button.disabled {
+  @apply bg-gray-400;
+}
+.button.disabled:hover {
+  @apply shadow-none;
+  @apply bg-gray-400;
+}

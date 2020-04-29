@@ -1,29 +1,42 @@
-# running-wild-ish
+<div align="center">
 
-## Project setup
+# Rapid Route Gamme
+
+## Draw the Shortest Route
+
+![license - MIT](https://img.shields.io/badge/license-MIT-blue?style=flat-square)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+
+[rapidroutegame.web.app](https://rapidroutegame.web.app)
+
+</div>
+
+Two points are displayed on a map, and you have to draw the shortest route between the two points. The route is then automatically marked to see if you got the shortest route.
+
+Originially Created by Ben Brown for the [Lockdown Orienteering Sprint Weekend](http://lockdownorienteering.wordpress.com/) to test and practice routechoice.
+
+### Usage
+
 ```
+# install dependencies
 npm install
-```
 
-### Compiles and hot-reloads for development
-```
+# serve with hot reload at localhost:8080
 npm run serve
-```
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Lints and fixes files
-```
+# run eslint and prettier
 npm run lint
+
+# run tests
+npm run test
+
+# build for production with minification
+npm run build
+
+# deploy /dist to firebase
+firebase deploy
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### License
+
+Released under the [MIT Licence](./LICENSE)
