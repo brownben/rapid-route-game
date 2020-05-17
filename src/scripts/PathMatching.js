@@ -56,7 +56,7 @@ const pointInSegment = (pointA, pointB, intersectionPoint) =>
 const pointInCircle = (circleCenter, intersectionPoint, circleRadius) =>
   distanceBetweenPoints(intersectionPoint, circleCenter) <= circleRadius
 
-const lineInCircle = (point1, point2, circleCenter, circleRadius = 12) => {
+const lineInCircle = (point1, point2, circleCenter, circleRadius = 10) => {
   const intersectionPoint = findPointOfIntersection(
     circleCenter,
     point1,
@@ -87,18 +87,13 @@ const checkIfLineInCircle = (point, path, sensitivity = 10) => {
   return false
 }
 
-export const comparePath = (
-  compulsoryPoints,
-  disallowedPoints,
-  path,
-  sensitivity
-) => {
+export const comparePath = (compulsoryPoints, disallowedPoints, path) => {
   const checkCompulsoryPoints = compulsoryPoints.map(point =>
-    checkIfLineInCircle(point.location, path, sensitivity)
+    checkIfLineInCircle(point.location, path, point.size)
   )
 
   const checkDisallowedPoints = disallowedPoints.map(point =>
-    checkIfLineInCircle(point.location, path, sensitivity)
+    checkIfLineInCircle(point.location, path, point.size)
   )
 
   return {

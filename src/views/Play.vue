@@ -1,6 +1,5 @@
 <template>
   <div>
-    {{ $router.params }}
     <template v-if="legNumber <= course.legs.length">
       <h3 class="font-main font-semibold text-2xl py-4 select-none">
         Leg: {{ legNumber }}
@@ -51,6 +50,7 @@ export default {
         hideMap: this.course.hideMap,
         penalty: this.course.penalty,
         timeLimit: this.course.timeLimit,
+        undoButton: this.course.undoButton,
       }
     },
 

@@ -4,7 +4,7 @@ export const imageScale = image => {
   return { width: image.width * scale, height: image.height * scale }
 }
 
-const findImageScale = image => {
+export const findImageScale = image => {
   if (image.width > 2400 || image.height > 2400) return 0.2
   else if (image.width > 1900 || image.height > 1900) return 0.25
   else if (image.width > 1200 || image.height > 1200) return 0.3

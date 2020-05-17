@@ -24,7 +24,7 @@
       </button>
     </div>
 
-    <div v-if="started && !finished" class="mt-3">
+    <div v-if="started && !finished && settings.undoButton" class="mt-3">
       <button v-show="imageLoaded" class="button white small" @click="undo">
         Undo
       </button>
@@ -117,6 +117,8 @@ export default {
       if (typeof this.settings?.timeLimit === 'number' && !this.finished) {
         if (timeInSeconds >= this.settings.timeLimit) this.whenFinished()
 
+        if (timeInSeconds === this.settings.timeLimit - 10)
+          this.beep(50, 520, 300, 10)
         if (timeInSeconds === this.settings.timeLimit - 3)
           this.beep(50, 520, 300, 3)
         else if (timeInSeconds === this.settings.timeLimit - 2)
@@ -135,7 +137,7 @@ export default {
     this.canvasElement = document.getElementById('canvas')
     this.canvas = this.canvasElement.getContext('2d')
 
-    this.audio = new AudioContext()
+    if (window.AudioContext) this.audio = new AudioContext()
 
     this.img = new Image()
     this.img.onload = this.onImageLoad
@@ -274,6 +276,7 @@ export default {
     },
 
     beep: function(vol, freq, duration, type) {
+      if (!this.audio) return
       if (type === this.beeped) return
       this.beeped = type
 
