@@ -10,6 +10,10 @@ body,
   @apply h-full w-full;
 }
 
+span {
+  @apply font-main;
+}
+
 img {
   height: calc(100vh - 17rem);
   max-height: 500px;
@@ -19,6 +23,10 @@ img {
 
 input:focus {
   @apply border-blue-800;
+}
+
+button {
+  transition: 0.3s;
 }
 
 .heading {
@@ -46,6 +54,9 @@ input:focus {
 .button.pink {
   @apply bg-pink-500;
 }
+.button.black {
+  @apply bg-gray-600 text-white font-semibold;
+}
 .button.red:hover {
   @apply bg-red-600;
 }
@@ -58,6 +69,9 @@ input:focus {
 .button.pink:hover {
   @apply bg-pink-600;
 }
+.button.black:hover {
+  @apply bg-gray-700;
+}
 
 .button.white {
   @apply bg-white border-2 border-gray-400 text-gray-500;
@@ -67,20 +81,6 @@ input:focus {
 }
 .button.white.small {
   @apply py-1 px-2 text-sm;
-}
-
-.choices .button {
-  @apply p-3 w-24 m-4 font-bold text-2xl text-center;
-}
-
-@media (max-width: 768px) {
-  .choices {
-    @apply flex flex-row justify-around;
-  }
-  .choices .button {
-    width: 30%;
-    @apply m-0 inline;
-  }
 }
 
 .button.disabled {
