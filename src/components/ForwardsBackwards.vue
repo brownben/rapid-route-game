@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-2">
+  <div class="mt-6">
     <button
       v-if="list.indexOf(currentItem) >= 1"
       class="button white mx-2"

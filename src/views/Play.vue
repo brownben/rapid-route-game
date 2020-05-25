@@ -27,7 +27,7 @@ export default {
     GameOver,
   },
 
-  data: function() {
+  data: function () {
     return {
       course: Courses[this.$route.params.event],
       legNumber: 1,
@@ -39,11 +39,11 @@ export default {
   },
 
   computed: {
-    currentLeg: function() {
+    currentLeg: function () {
       return this.course.legs[this.legNumber - 1]
     },
 
-    gameSettings: function() {
+    gameSettings: function () {
       return {
         ...this.currentLeg,
         showCorrectRoute: this.course.showSolution,
@@ -54,7 +54,7 @@ export default {
       }
     },
 
-    score: function() {
+    score: function () {
       const penalty =
         this.times.filter(
           (time, index) =>
@@ -66,19 +66,19 @@ export default {
       return `${score}/${this.course.legs.length}`
     },
 
-    time: function() {
+    time: function () {
       return this.times.reduce((a, b) => a + b, 0)
     },
   },
 
   methods: {
-    gameFinished: function({ correct, path, time }) {
+    gameFinished: function ({ correct, path, time }) {
       this.correct.push(correct)
       this.times.push(time)
       this.paths.push(path)
     },
 
-    nextLeg: function() {
+    nextLeg: function () {
       this.legNumber += 1
     },
   },

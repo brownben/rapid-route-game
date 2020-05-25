@@ -18,32 +18,32 @@
       </h2>
     </div>
 
-    <div v-if="!started && !finished" class="beforeStart mt-3">
+    <div v-if="!started && !finished" class="beforeStart mt-6">
       <button v-show="imageLoaded" class="button green" @click="startGame">
         Start
       </button>
     </div>
 
-    <div v-if="started && !finished && settings.undoButton" class="mt-3">
+    <div v-if="started && !finished && settings.undoButton" class="mt-6">
       <button v-show="imageLoaded" class="button white small" @click="undo">
         Undo
       </button>
     </div>
 
     <div v-if="finished" class="result">
-      <h1 v-if="correct" class="heading text-4xl my-3">Correct Route</h1>
-      <h1 v-else class="heading text-4xl my-3">Incorrect Route</h1>
+      <h1 v-if="correct" class="heading text-3xl my-3">Correct Route</h1>
+      <h1 v-else class="heading text-3xl my-3">Incorrect Route</h1>
 
       <button
         v-if="
           settings.showCorrectRoute && !drawnCorrectRoute && !settings.hideMap
         "
-        class="button blue mx-2"
+        class="button blue mx-2 mt-2"
         @click="drawCorrectPath"
       >
         Draw Correct Route
       </button>
-      <button class="button pink" @click="$emit('nextLeg')">
+      <button class="button pink mt-2" @click="$emit('nextLeg')">
         Next Leg
       </button>
     </div>
@@ -62,7 +62,7 @@ import {
   setLineStyle,
 } from '@/scripts/CanvasDrawing'
 import { distanceBetweenPoints, comparePath } from '@/scripts/PathMatching'
-import { imageScale } from '@/scripts/ImageScale'
+import { findImageScale } from '@/scripts/ImageScale'
 
 export default {
   props: {
@@ -93,7 +93,7 @@ export default {
   }),
 
   computed: {
-    overTimeLimit: function() {
+    overTimeLimit: function () {
       const timeLimit = this.settings?.penalty ?? this.settings?.timeLimit
       const latestTime = this.finishTime ?? this.currentTime
 
@@ -103,7 +103,7 @@ export default {
   },
 
   watch: {
-    currentTime: function() {
+    currentTime: function () {
       const timeInSeconds =
         Math.round((this.currentTime - this.startTime) / 100) / 10
 
@@ -131,7 +131,7 @@ export default {
     },
   },
 
-  mounted: function() {
+  mounted: function () {
     setInterval(this.getCurrentTime, 100)
 
     this.canvasElement = document.getElementById('canvas')
@@ -143,22 +143,31 @@ export default {
     this.img.onload = this.onImageLoad
     this.imageLoaded = false
     this.img.src = this.settings.imageLocation
+    this.img.onerror = async (event) => {
+      await this.delay(1000)
+      const source = this.img.src
+      this.img.src = source
+    }
   },
 
   methods: {
-    getCurrentTime: function() {
+    delay: function (time) {
+      return new Promise((resolve) => setTimeout(resolve, time))
+    },
+
+    getCurrentTime: function () {
       this.currentTime = Date.now()
     },
 
-    onImageLoad: function() {
-      const imageSize = imageScale(this.img)
-      this.canvasElement.width = imageSize.width
-      this.canvasElement.height = imageSize.height
+    onImageLoad: function () {
+      const imageScale = this.settings?.scale || findImageScale(this.img)
+      this.canvasElement.width = this.img.width * imageScale
+      this.canvasElement.height = this.img.height * imageScale
 
       this.imageLoaded = true
     },
 
-    userClick: function(event) {
+    userClick: function (event) {
       const canvasLocation = this.canvasElement.getBoundingClientRect()
 
       const point = [
@@ -174,7 +183,7 @@ export default {
       this.checkIfFinished(point)
     },
 
-    drawMap: function() {
+    drawMap: function () {
       this.canvas.drawImage(
         this.img,
         0,
@@ -187,7 +196,7 @@ export default {
       drawRing(this.canvas, this.settings.finishLocation, 14)
     },
 
-    startGame: function() {
+    startGame: function () {
       this.started = true
       this.startTime = Date.now()
 
@@ -197,7 +206,7 @@ export default {
       this.canvasElement.addEventListener('click', this.userClick)
     },
 
-    undo: function() {
+    undo: function () {
       this.userPath.pop()
       if (this.userPath.length === 0)
         this.userPath.push(this.settings.startLocation)
@@ -206,7 +215,7 @@ export default {
       drawPathWithDots(this.canvas, this.userPath, 3.5)
     },
 
-    whenFinished: function() {
+    whenFinished: function () {
       this.finished = true
       this.finishTime = Date.now()
       this.comparedPoints = comparePath(
@@ -233,7 +242,7 @@ export default {
       })
     },
 
-    drawCorrectPath: function() {
+    drawCorrectPath: function () {
       if (this.drawnCorrectRoute) return
 
       setLineStyle(this.canvas, 'blue')
@@ -270,12 +279,12 @@ export default {
       this.drawnCorrectRoute = true
     },
 
-    checkIfFinished: function(point) {
+    checkIfFinished: function (point) {
       if (distanceBetweenPoints(point, this.settings.finishLocation) <= 10)
         this.whenFinished()
     },
 
-    beep: function(vol, freq, duration, type) {
+    beep: function (vol, freq, duration, type) {
       if (!this.audio) return
       if (type === this.beeped) return
       this.beeped = type

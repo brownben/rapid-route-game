@@ -47,7 +47,7 @@ export const drawTriangle = (canvas, point, sideLength) => {
     [0, ((1 - Math.sqrt(3)) / 2) * sideLength],
   ]
 
-  const shiftedTriangle = pointsOfTriangle.map(point => [
+  const shiftedTriangle = pointsOfTriangle.map((point) => [
     point[0] + x,
     point[1] + y,
   ])
@@ -80,7 +80,7 @@ export const drawPath = (canvas, path) => {
 
 export const drawPathWithDots = (canvas, path, dotSize) => {
   drawPath(canvas, path)
-  path.slice(1).forEach(dot => drawCircle(canvas, dot, dotSize))
+  path.slice(1).forEach((dot) => drawCircle(canvas, dot, dotSize))
 }
 
 export const setLineStyle = (canvas, color, width = 3.5) => {

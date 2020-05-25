@@ -34,7 +34,7 @@ button {
 }
 
 .button {
-  @apply bg-blue-500 text-center font-main text-white px-4 py-1 mt-4 text-base rounded-md inline-block select-none;
+  @apply bg-blue-500 text-center font-main text-white px-4 py-1 text-base rounded-md inline-block select-none;
   transition: 0.5s;
 }
 
@@ -42,44 +42,49 @@ button {
   @apply shadow-xl;
 }
 
-.button.red {
+.button-small {
+  @apply m-2 h-10 w-10 text-center font-main text-white text-base rounded-md inline-block select-none;
+  transition: 0.5s;
+}
+
+.red {
   @apply bg-red-500;
 }
-.button.green {
+.green {
   @apply bg-green-500;
 }
-.button.blue {
+.blue {
   @apply bg-blue-500;
 }
-.button.pink {
+.pink {
   @apply bg-pink-500;
 }
-.button.black {
+.black {
   @apply bg-gray-600 text-white font-semibold;
 }
-.button.red:hover {
+.red:hover {
   @apply bg-red-600;
 }
-.button.green:hover {
+.green:hover {
   @apply bg-green-600;
 }
-.button.blue:hover {
+.blue:hover {
   @apply bg-blue-600;
 }
-.button.pink:hover {
+.pink:hover {
   @apply bg-pink-600;
 }
-.button.black:hover {
+.black:hover {
   @apply bg-gray-700;
 }
 
-.button.white {
+.white {
   @apply bg-white border-2 border-gray-400 text-gray-500;
 }
-.button.white:hover {
+.white:hover {
   @apply shadow-md bg-gray-100;
 }
-.button.white.small {
+.white.small {
   @apply py-1 px-2 text-sm;
 }
 

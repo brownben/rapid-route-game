@@ -1,14 +1,89 @@
 <template>
   <div>
-    <Breadcrumbs
-      :list="['Select Image', 'Start/ Finish', 'Route', 'Dots', 'Output']"
-      :currentItem="stage"
-    />
+    <Breadcrumbs :list="stages" :currentItem="stage" />
 
     <div class="fixed top-12 w-full py-6 overflow-y-auto h-full--12">
-      <canvas id="canvas" width="0" height="0" class="border inline-block">
-        <p>Sorry, this game doesn't work without the Canvas Enabled</p>
-      </canvas>
+      <div class="button-grid">
+        <template v-if="stage === 'Centre Leg'">
+          <div class="r1 c2">
+            <button class="button-small red" @click="crop('top')">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M0 0h24v24H0V0z" fill="none" />
+                <path
+                  d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"
+                />
+              </svg>
+            </button>
+            <button class="button-small blue" @click="enlarge('top')">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M0 0h24v24H0V0z" fill="none" />
+                <path
+                  d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"
+                />
+              </svg>
+            </button>
+          </div>
+          <div class="r3 c2">
+            <button class="button-small red" @click="crop('bottom')">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M0 0h24v24H0V0z" fill="none" />
+                <path
+                  d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"
+                />
+              </svg>
+            </button>
+            <button class="button-small blue" @click="enlarge('bottom')">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M0 0h24v24H0V0z" fill="none" />
+                <path
+                  d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"
+                />
+              </svg>
+            </button>
+          </div>
+          <div class="r2 c1">
+            <button class="button-small red" @click="crop('left')">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M0 0h24v24H0z" fill="none" />
+                <path
+                  d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"
+                />
+              </svg>
+            </button>
+            <button class="button-small blue block" @click="enlarge('left')">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M0 0h24v24H0z" fill="none" />
+                <path
+                  d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
+                />
+              </svg>
+            </button>
+          </div>
+          <div class="r2 c3">
+            <button class="button-small red" @click="crop('right')">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M0 0h24v24H0z" fill="none" />
+                <path
+                  d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
+                />
+              </svg>
+            </button>
+            <button class="button-small blue" @click="enlarge('right')">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M0 0h24v24H0z" fill="none" />
+                <path
+                  d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"
+                />
+              </svg>
+            </button>
+          </div>
+        </template>
+        <div class="r2 c2">
+          <canvas id="canvas" width="0" height="0" class="border inline-block">
+            <p>Sorry, this game doesn't work without the Canvas Enabled</p>
+          </canvas>
+        </div>
+      </div>
 
       <div v-if="stage === 'Select Image'">
         <label for="image" class="block font-main select-none"
@@ -22,7 +97,66 @@
         />
       </div>
 
-      <div v-if="stage === 'Start/ Finish'">
+      <div v-if="stage === 'Centre Leg'">
+        <div class="mt-6">
+          <button class="button green mx-2" @click="rotate(-5)">
+            <svg
+              class="big"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+            >
+              <path d="M0 0h24v24H0z" fill="none" />
+              <path
+                d="M7.11 8.53L5.7 7.11C4.8 8.27 4.24 9.61 4.07 11h2.02c.14-.87.49-1.72 1.02-2.47zM6.09 13H4.07c.17 1.39.72 2.73 1.62 3.89l1.41-1.42c-.52-.75-.87-1.59-1.01-2.47zm1.01 5.32c1.16.9 2.51 1.44 3.9 1.61V17.9c-.87-.15-1.71-.49-2.46-1.03L7.1 18.32zM13 4.07V1L8.45 5.55 13 10V6.09c2.84.48 5 2.94 5 5.91s-2.16 5.43-5 5.91v2.02c3.95-.49 7-3.85 7-7.93s-3.05-7.44-7-7.93z"
+              />
+            </svg>
+          </button>
+          <button class="button green mx-2 mr-6" @click="rotate(5)">
+            <svg
+              class="big"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+            >
+              <path d="M0 0h24v24H0z" fill="none" />
+              <path
+                d="M15.55 5.55L11 1v3.07C7.06 4.56 4 7.92 4 12s3.05 7.44 7 7.93v-2.02c-2.84-.48-5-2.94-5-5.91s2.16-5.43 5-5.91V10l4.55-4.45zM19.93 11c-.17-1.39-.72-2.73-1.62-3.89l-1.42 1.42c.54.75.88 1.6 1.02 2.47h2.02zM13 17.9v2.02c1.39-.17 2.74-.71 3.9-1.61l-1.44-1.44c-.75.54-1.59.89-2.46 1.03zm3.89-2.42l1.42 1.41c.9-1.16 1.45-2.5 1.62-3.89h-2.02c-.14.87-.48 1.72-1.02 2.48z"
+              />
+            </svg>
+          </button>
+          <button class="button mx-2 blue ml-6" @click="scale(true)">
+            <svg
+              class="big"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+            >
+              <path d="M0 0h24v24H0V0z" fill="none" />
+              <path
+                d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+              />
+              <path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z" />
+            </svg>
+          </button>
+          <button class="blue button mx-2" @click="scale(false)">
+            <svg
+              class="big"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+            >
+              <path d="M0 0h24v24H0V0z" fill="none" />
+              <path
+                d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM7 9h5v1H7z"
+              />
+            </svg>
+          </button>
+        </div>
+        <div class="my-4">
+          <button class="button blue" @click="resetCrop">
+            Reset Cropping
+          </button>
+        </div>
+      </div>
+
+      <div v-if="stage === 'Start/ Finish'" class="mt-4">
         <button class="button pink mx-2" @click="pointType = 'start'">
           Place Start
         </button>
@@ -36,13 +170,16 @@
           Route Distance: {{ pathLength(correctPath).toFixed(1) }}
         </h3>
 
-        <button class="button green mx-2" @click="clearPoints('correctPath')">
+        <button
+          class="button green mx-2 mt-4"
+          @click="clearPoints('correctPath')"
+        >
           Clear Correct Route
         </button>
       </div>
 
       <div v-if="stage === 'Dots'">
-        <div>
+        <div class="mt-4">
           <button class="button blue mx-2" @click="pointType = 'compulsory'">
             Add Compulsory Point
           </button>
@@ -50,7 +187,7 @@
             Clear Compulsory Points
           </button>
         </div>
-        <div>
+        <div class="mt-4">
           <button class="button red mx-2" @click="pointType = 'disallowed'">
             Add Disallowed Point
           </button>
@@ -59,7 +196,7 @@
           </button>
         </div>
 
-        <label for="sensitivity" class="block font-main select-none mt-3"
+        <label for="sensitivity" class="block font-main select-none mt-5"
           >Sensitivity:</label
         >
         <input
@@ -74,22 +211,33 @@
         <textarea
           id="output"
           v-model="output"
-          class="mt-6 h-64 inline-block rounded border-2 border-blue-400  "
+          class="mt-6 h-64 inline-block rounded border-2 border-blue-400"
         ></textarea>
-        <button class="button black mx-2" @click="generateOutput">
-          Generate Output
-        </button>
-        <button
-          v-if="output"
-          class="button black mx-2"
-          @click="copyOuputToClipboard"
-        >
-          Copy Output to Clipboard
-        </button>
+        <div class="mt-4">
+          <button class="button black mx-2" @click="generateOutput">
+            Generate Output
+          </button>
+          <button
+            v-if="output"
+            class="button black mx-2"
+            @click="copyOuputToClipboard"
+          >
+            Copy Output to Clipboard
+          </button>
+          <a
+            v-if="newImage"
+            :href="newImage"
+            class="button black mx-2"
+            target="_blank"
+            rel="noopener noreferrer"
+            download="Map"
+            >Download Image</a
+          >
+        </div>
       </div>
 
       <ForwardsBackwards
-        :list="['Select Image', 'Start/ Finish', 'Route', 'Dots', 'Output']"
+        :list="stages"
         :currentItem="stage"
         :blockNext="
           stage === 'Start/ Finish' && (!startLocation || !finishLocation)
@@ -122,6 +270,14 @@ export default {
 
   data: () => ({
     stage: 'Select Image',
+    stages: [
+      'Select Image',
+      'Centre Leg',
+      'Start/ Finish',
+      'Route',
+      'Dots',
+      'Output',
+    ],
 
     canvas: undefined,
     canvasElement: undefined,
@@ -131,8 +287,12 @@ export default {
     img: undefined,
     imageLoaded: false,
     imageSize: undefined,
+    imageScale: 1,
+    imageRotation: 0,
+    imagePosition: {},
+    newImage: '',
 
-    pointType: 'start',
+    pointType: '',
     startLocation: undefined,
     finishLocation: undefined,
     correctPath: [],
@@ -144,17 +304,34 @@ export default {
 
     pathLength: pathLength,
 
-    imageScale: 1,
+    drag: {
+      mousedown: false,
+      start: { x: 0, y: 0 },
+    },
   }),
 
-  mounted: function() {
+  computed: {
+    imageChanged: function () {
+      return (
+        this.imagePosition.dx !== 0 ||
+        this.imagePosition.dy !== 0 ||
+        this.imageRotation !== 0 ||
+        this.canvasElement.width < this.img.width * this.imageScale - 1 ||
+        this.canvasElement.width > this.img.width * this.imageScale + 1 ||
+        this.canvasElement.height < this.img.height * this.imageScale - 1 ||
+        this.canvasElement.height > this.img.height * this.imageScale + 1
+      )
+    },
+  },
+
+  mounted: function () {
     this.canvasElement = document.getElementById('canvas')
     this.canvas = this.canvasElement.getContext('2d')
   },
 
   methods: {
-    changeStage: function(value) {
-      if (this.stage === 'Select Image' && value === 'Start/ Finish')
+    changeStage: function (value) {
+      if (this.stage === 'Select Image' && value === 'Centre Leg')
         this.loadImage()
       else this.stage = value
 
@@ -167,7 +344,7 @@ export default {
       else if (value === 'Output') this.pointType = ''
     },
 
-    loadImage: function() {
+    loadImage: function () {
       this.wipeCanvas()
       this.clearData()
       this.img = new Image()
@@ -175,31 +352,75 @@ export default {
       this.img.src = this.imageLocation
     },
 
-    onImageLoad: function() {
-      this.stage = 'Start/ Finish'
+    onImageLoad: function () {
+      this.stage = 'Centre Leg'
 
       this.imageScale = findImageScale(this.img)
       this.canvasElement.width = this.img.width * this.imageScale
       this.canvasElement.height = this.img.height * this.imageScale
+
+      this.imagePosition = {
+        sx: 0,
+        sy: 0,
+        sWidth: this.img.width,
+        sHeight: this.img.height,
+        dx: 0,
+        dy: 0,
+        dWidth: this.img.width * this.imageScale,
+        dHeight: this.img.height * this.imageScale,
+      }
+
       this.drawImage()
 
       this.imageLoaded = true
       this.canvasElement.addEventListener('click', this.userClick)
+
+      this.canvasElement.addEventListener('mousedown', this.startDragImage)
+      this.canvasElement.addEventListener('mousemove', this.dragImage)
+      this.canvasElement.addEventListener('mouseup', () => {
+        this.drag.mousedown = false
+      })
     },
 
-    drawImage: function() {
+    startDragImage: function (event) {
+      this.drag.mousedown = true
+      this.drag.start = { x: event.x, y: event.y }
+    },
+
+    dragImage: function (event) {
+      if (this.drag.mousedown && this.stage === 'Centre Leg') {
+        this.imagePosition.dx -= this.drag.start.x - event.x
+        this.imagePosition.dy -= this.drag.start.y - event.y
+
+        this.drag.start = { x: event.x, y: event.y }
+
+        this.drawImage()
+      }
+    },
+
+    drawImage: function () {
       this.wipeCanvas()
+
+      this.canvas.save()
+
+      this.canvas.rotate((this.imageRotation * Math.PI) / 180)
 
       this.canvas.drawImage(
         this.img,
-        0,
-        0,
-        this.canvasElement.width,
-        this.canvasElement.height
+        this.imagePosition.sx,
+        this.imagePosition.sy,
+        this.imagePosition.sWidth,
+        this.imagePosition.sHeight,
+        this.imagePosition.dx,
+        this.imagePosition.dy,
+        this.imagePosition.dWidth,
+        this.imagePosition.dHeight
       )
+
+      this.canvas.restore()
     },
 
-    wipeCanvas: function() {
+    wipeCanvas: function () {
       this.canvas.clearRect(
         0,
         0,
@@ -208,7 +429,7 @@ export default {
       )
     },
 
-    clearData: function() {
+    clearData: function () {
       this.canvasElement.width = 0
       this.canvasElement.height = 0
 
@@ -220,9 +441,93 @@ export default {
       this.disallowedPoints = []
 
       this.imageScale = 1
+      this.imageRotation = 0
+
+      this.output = ''
     },
 
-    userClick: function(event) {
+    rotate: function (angle) {
+      this.imageRotation += angle
+
+      if (this.imageRotation >= 360) this.imageRotation -= 360
+
+      this.drawImage()
+    },
+
+    crop: function (side, size = 10) {
+      if (['top', 'bottom'].includes(side) && this.canvasElement.height > 20)
+        this.canvasElement.height -= size
+      else if (
+        ['left', 'right'].includes(side) &&
+        this.canvasElement.width > 20
+      )
+        this.canvasElement.width -= size
+
+      if (side === 'top') {
+        this.imagePosition.dx -=
+          size * Math.sin((this.imageRotation * Math.PI) / 180)
+        this.imagePosition.dy -=
+          size * Math.cos((this.imageRotation * Math.PI) / 180)
+      } else if (side === 'left') {
+        this.imagePosition.dx -=
+          size * Math.cos((this.imageRotation * Math.PI) / 180)
+        this.imagePosition.dy -= Math.abs(
+          size * Math.sin((this.imageRotation * Math.PI) / 180)
+        )
+      }
+
+      this.drawImage()
+    },
+
+    resetCrop: function () {
+      this.imagePosition = {
+        sx: 0,
+        sy: 0,
+        sWidth: this.img.width,
+        sHeight: this.img.height,
+        dx: 0,
+        dy: 0,
+        dWidth: this.img.width * this.imageScale,
+        dHeight: this.img.height * this.imageScale,
+      }
+      this.canvasElement.width = this.img.width * this.imageScale
+      this.canvasElement.height = this.img.height * this.imageScale
+
+      this.drawImage()
+    },
+
+    enlarge: function (side, size = 10) {
+      if (['top', 'bottom'].includes(side)) this.canvasElement.height += size
+      else if (['left', 'right'].includes(side))
+        this.canvasElement.width += size
+
+      if (side === 'top') {
+        this.imagePosition.dx +=
+          size * Math.sin((this.imageRotation * Math.PI) / 180)
+        this.imagePosition.dy +=
+          size * Math.cos((this.imageRotation * Math.PI) / 180)
+      } else if (side === 'left') {
+        this.imagePosition.dx +=
+          size * Math.cos((this.imageRotation * Math.PI) / 180)
+        this.imagePosition.dy += Math.abs(
+          size * Math.sin((this.imageRotation * Math.PI) / 180)
+        )
+      }
+
+      this.drawImage()
+    },
+
+    scale: function (zoomIn = true) {
+      if (zoomIn) this.imageScale += 0.02
+      else if (this.imageScale >= 0.02) this.imageScale -= 0.02
+
+      this.imagePosition.dWidth = this.img.width * this.imageScale
+      this.imagePosition.dHeight = this.img.height * this.imageScale
+
+      this.drawImage()
+    },
+
+    userClick: function (event) {
       const canvasLocation = this.canvasElement.getBoundingClientRect()
 
       const point = [
@@ -241,7 +546,7 @@ export default {
       this.drawPoints()
     },
 
-    drawPoints: function() {
+    drawPoints: function () {
       // Draw Map Again to Blank Previous Versions
       this.drawImage()
 
@@ -267,7 +572,7 @@ export default {
         drawPath(this.canvas, [this.startLocation, ...this.correctPath])
     },
 
-    clearPoints: function(type) {
+    clearPoints: function (type) {
       if (type === 'compulsory') this.compulsoryPoints = []
       else if (type === 'disallowed') this.disallowedPoints = []
       else if (type === 'correctPath') this.correctPath = []
@@ -275,23 +580,30 @@ export default {
       this.drawPoints()
     },
 
-    generateOutput: function() {
-      this.output = JSON.stringify(
-        {
-          imageLocation: this.imageLocation,
-          scale: this.imageScale,
-          startLocation: this.startLocation,
-          finishLocation: this.finishLocation,
-          compulsoryPoints: this.compulsoryPoints,
-          disallowedPoints: this.disallowedPoints,
-          correctPath: this.correctPath,
-        },
-        null,
-        4
-      )
+    generateOutput: function () {
+      let image = ''
+      let scale = this.imageScale
+
+      if (this.imageChanged) {
+        this.drawImage()
+        image = this.canvasElement.toDataURL('image/jpeg', 0.9)
+        this.newImage = image
+        scale = 1
+        this.drawPoints()
+      } else image = this.imageLocation
+
+      this.output = JSON.stringify({
+        imageLocation: image,
+        scale: scale,
+        startLocation: this.startLocation,
+        finishLocation: this.finishLocation,
+        compulsoryPoints: this.compulsoryPoints,
+        disallowedPoints: this.disallowedPoints,
+        correctPath: this.correctPath,
+      })
     },
 
-    copyOuputToClipboard: function() {
+    copyOuputToClipboard: function () {
       const output = document.getElementById('output')
       output.select()
       output.setSelectionRange(0, 99999)
@@ -305,6 +617,11 @@ export default {
 svg {
   fill: white;
   box-sizing: border-box;
+  display: inline;
+  @apply p-1 h-8;
+}
+
+svg.big {
   @apply p-2 h-12;
 }
 
@@ -336,5 +653,37 @@ textarea {
 
 .h-full--12 {
   height: calc(100% - 3rem);
+}
+
+.button-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.button-grid div {
+  @apply flex justify-center;
+}
+
+.c1 {
+  grid-column-start: 1;
+  @apply flex-col items-end;
+}
+.c2 {
+  grid-column-start: 2;
+  @apply items-center;
+}
+.c3 {
+  grid-column-start: 3;
+  @apply flex-col items-start;
+}
+.r1 {
+  grid-row-start: 1;
+}
+.r2 {
+  grid-row-start: 2;
+}
+.r3 {
+  grid-row-start: 3;
 }
 </style>

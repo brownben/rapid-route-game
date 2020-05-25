@@ -5,7 +5,7 @@
       Draw the Shortest Route!
     </h3>
 
-    <div class="my-6 ">
+    <div class="my-6">
       <div>
         <p class="mb-2 w-3/4 md:w-2/3 lg:w-1/2 inline-block">
           Two points are displayed on a map, and you have to draw the shortest

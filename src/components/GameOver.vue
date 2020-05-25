@@ -6,7 +6,7 @@
       Time: {{ time / 1000 }}s
     </h3>
 
-    <router-link class="button blue mx-2" to="/">Return Home</router-link>
+    <router-link class="button blue mx-2 mt-4" to="/">Return Home</router-link>
   </div>
 </template>
 <script>
