@@ -1,4 +1,5 @@
 module.exports = {
+  purge: ['./src/**/*.vue'],
   theme: {
     screens: {
       sm: '640px',
