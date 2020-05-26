@@ -2,20 +2,20 @@
   <div class="mt-6">
     <button
       v-if="list.indexOf(currentItem) >= 1"
-      class="button white mx-2"
+      class="button-secondary"
       @click="$emit('changeStage', list[list.indexOf(currentItem) - 1])"
     >
       Back</button
     ><button
       v-if="list.indexOf(currentItem) < list.length - 1 && !blockNext"
-      class="button white mx-2"
+      class="button-secondary"
       @click="$emit('changeStage', list[list.indexOf(currentItem) + 1])"
     >
       Next
     </button>
     <button
       v-if="list.indexOf(currentItem) === list.length - 1"
-      class="button white mx-2"
+      class="button"
       @click="$emit('changeStage', list[0])"
     >
       Restart

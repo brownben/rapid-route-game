@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="flex items-center text-center flex-col min-h-full">
     <template v-if="legNumber <= course.legs.length">
-      <h3 class="font-main font-semibold text-2xl py-4 select-none">
+      <h3 class="font-heading font-semibold text-3xl pt-4 pb-3 select-none">
         Leg: {{ legNumber }}
       </h3>
       <Game
@@ -69,6 +69,10 @@ export default {
     time: function () {
       return this.times.reduce((a, b) => a + b, 0)
     },
+  },
+
+  mounted: function () {
+    if (!this.course) this.$router.push('/')
   },
 
   methods: {

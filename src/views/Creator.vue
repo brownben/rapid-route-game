@@ -1,12 +1,12 @@
 <template>
   <div>
-    <Breadcrumbs :list="stages" :currentItem="stage" />
-
-    <div class="fixed top-12 w-full py-6 overflow-y-auto h-full--12">
-      <div class="button-grid">
+    <div
+      class="fixed bottom-12 w-full py-6 overflow-y-auto h-full--12 flex flex-col items-center"
+    >
+      <div class="button-grid w-full">
         <template v-if="stage === 'Centre Leg'">
           <div class="r1 c2">
-            <button class="button-small red" @click="crop('top')">
+            <button class="button" @click="crop('top')">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <path d="M0 0h24v24H0V0z" fill="none" />
                 <path
@@ -14,7 +14,7 @@
                 />
               </svg>
             </button>
-            <button class="button-small blue" @click="enlarge('top')">
+            <button class="button-secondary" @click="enlarge('top')">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <path d="M0 0h24v24H0V0z" fill="none" />
                 <path
@@ -24,7 +24,7 @@
             </button>
           </div>
           <div class="r3 c2">
-            <button class="button-small red" @click="crop('bottom')">
+            <button class="button" @click="crop('bottom')">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <path d="M0 0h24v24H0V0z" fill="none" />
                 <path
@@ -32,7 +32,7 @@
                 />
               </svg>
             </button>
-            <button class="button-small blue" @click="enlarge('bottom')">
+            <button class="button-secondary" @click="enlarge('bottom')">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <path d="M0 0h24v24H0V0z" fill="none" />
                 <path
@@ -42,7 +42,7 @@
             </button>
           </div>
           <div class="r2 c1">
-            <button class="button-small red" @click="crop('left')">
+            <button class="button mb-2" @click="crop('left')">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <path d="M0 0h24v24H0z" fill="none" />
                 <path
@@ -50,7 +50,10 @@
                 />
               </svg>
             </button>
-            <button class="button-small blue block" @click="enlarge('left')">
+            <button
+              class="button-secondary block mt-2"
+              @click="enlarge('left')"
+            >
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <path d="M0 0h24v24H0z" fill="none" />
                 <path
@@ -60,7 +63,7 @@
             </button>
           </div>
           <div class="r2 c3">
-            <button class="button-small red" @click="crop('right')">
+            <button class="button mb-2" @click="crop('right')">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <path d="M0 0h24v24H0z" fill="none" />
                 <path
@@ -68,7 +71,7 @@
                 />
               </svg>
             </button>
-            <button class="button-small blue" @click="enlarge('right')">
+            <button class="button-secondary mt-2" @click="enlarge('right')">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <path d="M0 0h24v24H0z" fill="none" />
                 <path
@@ -84,134 +87,158 @@
           </canvas>
         </div>
       </div>
-
-      <div v-if="stage === 'Select Image'">
-        <label for="image" class="block font-main select-none"
+      <div
+        v-if="stage === 'Select Image'"
+        class="w-full text-center pt-4 pb-12"
+      >
+        <h1 class="font-heading font-black text-5xl m-0 text-center">
+          Rapid Route - Creator
+        </h1>
+        <h3 class="font-main font-semibold text-xl text-center">
+          Create Your Own Course!
+        </h3>
+      </div>
+      <div v-if="stage === 'Select Image'" class="w-full">
+        <label
+          for="image"
+          class="block font-main font-semibold select-none text-center"
           >Map Location:</label
         >
         <input
           v-model.lazy="imageLocation"
           name="image"
           type="text"
-          class="inline-block rounded border-2 border-blue-400 p-1 my-2 text-center"
+          class="block rounded-md border-2 p-1 my-2 text-center"
         />
       </div>
 
-      <div v-if="stage === 'Centre Leg'">
-        <div class="mt-6">
-          <button class="button green mx-2" @click="rotate(-5)">
-            <svg
-              class="big"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-            >
-              <path d="M0 0h24v24H0z" fill="none" />
-              <path
-                d="M7.11 8.53L5.7 7.11C4.8 8.27 4.24 9.61 4.07 11h2.02c.14-.87.49-1.72 1.02-2.47zM6.09 13H4.07c.17 1.39.72 2.73 1.62 3.89l1.41-1.42c-.52-.75-.87-1.59-1.01-2.47zm1.01 5.32c1.16.9 2.51 1.44 3.9 1.61V17.9c-.87-.15-1.71-.49-2.46-1.03L7.1 18.32zM13 4.07V1L8.45 5.55 13 10V6.09c2.84.48 5 2.94 5 5.91s-2.16 5.43-5 5.91v2.02c3.95-.49 7-3.85 7-7.93s-3.05-7.44-7-7.93z"
-              />
-            </svg>
-          </button>
-          <button class="button green mx-2 mr-6" @click="rotate(5)">
-            <svg
-              class="big"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-            >
-              <path d="M0 0h24v24H0z" fill="none" />
-              <path
-                d="M15.55 5.55L11 1v3.07C7.06 4.56 4 7.92 4 12s3.05 7.44 7 7.93v-2.02c-2.84-.48-5-2.94-5-5.91s2.16-5.43 5-5.91V10l4.55-4.45zM19.93 11c-.17-1.39-.72-2.73-1.62-3.89l-1.42 1.42c.54.75.88 1.6 1.02 2.47h2.02zM13 17.9v2.02c1.39-.17 2.74-.71 3.9-1.61l-1.44-1.44c-.75.54-1.59.89-2.46 1.03zm3.89-2.42l1.42 1.41c.9-1.16 1.45-2.5 1.62-3.89h-2.02c-.14.87-.48 1.72-1.02 2.48z"
-              />
-            </svg>
-          </button>
-          <button class="button mx-2 blue ml-6" @click="scale(true)">
-            <svg
-              class="big"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-            >
-              <path d="M0 0h24v24H0V0z" fill="none" />
-              <path
-                d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
-              />
-              <path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z" />
-            </svg>
-          </button>
-          <button class="blue button mx-2" @click="scale(false)">
-            <svg
-              class="big"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-            >
-              <path d="M0 0h24v24H0V0z" fill="none" />
-              <path
-                d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM7 9h5v1H7z"
-              />
-            </svg>
-          </button>
+      <div v-if="stage === 'Centre Leg'" class="w-full text-center">
+        <div class="mt-8">
+          <div class="mr-3 inline">
+            <button class="button mx-2" @click="rotate(-5)">
+              <svg
+                class="big"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+              >
+                <path d="M0 0h24v24H0z" fill="none" />
+                <path
+                  d="M7.11 8.53L5.7 7.11C4.8 8.27 4.24 9.61 4.07 11h2.02c.14-.87.49-1.72 1.02-2.47zM6.09 13H4.07c.17 1.39.72 2.73 1.62 3.89l1.41-1.42c-.52-.75-.87-1.59-1.01-2.47zm1.01 5.32c1.16.9 2.51 1.44 3.9 1.61V17.9c-.87-.15-1.71-.49-2.46-1.03L7.1 18.32zM13 4.07V1L8.45 5.55 13 10V6.09c2.84.48 5 2.94 5 5.91s-2.16 5.43-5 5.91v2.02c3.95-.49 7-3.85 7-7.93s-3.05-7.44-7-7.93z"
+                />
+              </svg>
+            </button>
+            <button class="button mx-2 mr-6" @click="rotate(5)">
+              <svg
+                class="big"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+              >
+                <path d="M0 0h24v24H0z" fill="none" />
+                <path
+                  d="M15.55 5.55L11 1v3.07C7.06 4.56 4 7.92 4 12s3.05 7.44 7 7.93v-2.02c-2.84-.48-5-2.94-5-5.91s2.16-5.43 5-5.91V10l4.55-4.45zM19.93 11c-.17-1.39-.72-2.73-1.62-3.89l-1.42 1.42c.54.75.88 1.6 1.02 2.47h2.02zM13 17.9v2.02c1.39-.17 2.74-.71 3.9-1.61l-1.44-1.44c-.75.54-1.59.89-2.46 1.03zm3.89-2.42l1.42 1.41c.9-1.16 1.45-2.5 1.62-3.89h-2.02c-.14.87-.48 1.72-1.02 2.48z"
+                />
+              </svg>
+            </button>
+          </div>
+          <div class="ml-3 inline">
+            <button class="button mx-2 ml-6" @click="scale(true)">
+              <svg
+                class="big"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+              >
+                <path d="M0 0h24v24H0V0z" fill="none" />
+                <path
+                  d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                />
+                <path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z" />
+              </svg>
+            </button>
+            <button class="button mx-2" @click="scale(false)">
+              <svg
+                class="big"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+              >
+                <path d="M0 0h24v24H0V0z" fill="none" />
+                <path
+                  d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM7 9h5v1H7z"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
-        <div class="my-4">
-          <button class="button blue" @click="resetCrop">
+        <div class="mt-6">
+          <button class="button-secondary" @click="resetCrop">
             Reset Cropping
           </button>
         </div>
       </div>
 
       <div v-if="stage === 'Start/ Finish'" class="mt-4">
-        <button class="button pink mx-2" @click="pointType = 'start'">
+        <button class="button mx-2" @click="pointType = 'start'">
           Place Start
         </button>
-        <button class="button pink mx-2" @click="pointType = 'finish'">
+        <button class="button mx-2" @click="pointType = 'finish'">
           Place Finish
         </button>
       </div>
 
-      <div v-if="stage === 'Route'">
-        <h3 class="font-main text-lg mt-3 font-semibold select-none">
+      <div v-if="stage === 'Route'" class="w-full text-center">
+        <h3 class="font-main text-2xl mt-4 font-semibold select-none">
           Route Distance: {{ pathLength(correctPath).toFixed(1) }}
         </h3>
 
         <button
-          class="button green mx-2 mt-4"
+          class="button-secondary mx-2 mt-6"
           @click="clearPoints('correctPath')"
         >
           Clear Correct Route
         </button>
       </div>
 
-      <div v-if="stage === 'Dots'">
+      <div v-if="stage === 'Dots'" class="w-full text-center">
         <div class="mt-4">
-          <button class="button blue mx-2" @click="pointType = 'compulsory'">
+          <button class="button mx-2" @click="pointType = 'compulsory'">
             Add Compulsory Point
           </button>
-          <button class="button blue mx-2" @click="clearPoints('compulsory')">
-            Clear Compulsory Points
+          <button class="button mx-2" @click="pointType = 'disallowed'">
+            Add Disallowed Point
           </button>
         </div>
         <div class="mt-4">
-          <button class="button red mx-2" @click="pointType = 'disallowed'">
-            Add Disallowed Point
+          <button
+            class="button-secondary mx-2"
+            @click="clearPoints('compulsory')"
+          >
+            Clear Compulsory Points
           </button>
-          <button class="button red mx-2" @click="clearPoints('disallowed')">
+          <button
+            class="button-secondary mx-2"
+            @click="clearPoints('disallowed')"
+          >
             Clear Disallowed Points
           </button>
         </div>
 
-        <label for="sensitivity" class="block font-main select-none mt-5"
+        <label
+          for="sensitivity"
+          class="block font-main font-semibold select-none mt-5"
           >Sensitivity:</label
         >
         <input
           v-model.number="sensitivity"
           name="sensitivity"
           type="number"
-          class="inline-block rounded border-2 border-blue-400 p-1 my-2 text-center"
+          class="inline-block rounded-md border-2 p-1 my-2 text-center"
         />
       </div>
 
-      <div v-if="stage === 'Output'">
+      <div v-if="stage === 'Output'" class="w-full text-center">
         <textarea
           id="output"
           v-model="output"
-          class="mt-6 h-64 inline-block rounded border-2 border-blue-400"
+          class="mt-6 h-64 inline-block rounded-md border-2"
         ></textarea>
         <div class="mt-4">
           <button class="button black mx-2" @click="generateOutput">
@@ -245,6 +272,7 @@
         @changeStage="changeStage"
       />
     </div>
+    <Breadcrumbs :list="stages" :currentItem="stage" />
   </div>
 </template>
 
@@ -615,10 +643,9 @@ export default {
 
 <style lang="postcss">
 svg {
-  fill: white;
   box-sizing: border-box;
   display: inline;
-  @apply p-1 h-8;
+  @apply p-1 h-8 fill-current;
 }
 
 svg.big {
@@ -631,24 +658,29 @@ canvas {
 
 input {
   @apply my-3;
-
-  width: 60%;
+  @apply border-2 border-purple outline-none;
+  width: 70%;
   margin-left: 15%;
   margin-right: 15%;
   transition: 0.5s;
-  outline-color: blue;
+}
+
+input:focus,
+input:active,
+textarea:focus,
+textarea:active {
+  @apply border-2 border-purple-darkest;
 }
 
 textarea {
-  width: 60%;
+  width: 70%;
   margin-left: 15%;
   margin-right: 15%;
   transition: 0.5s;
-  outline-color: blue;
 }
 
-.top-12 {
-  top: 3rem;
+.bottom-12 {
+  bottom: 3rem;
 }
 
 .h-full--12 {

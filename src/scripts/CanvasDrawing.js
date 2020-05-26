@@ -88,7 +88,7 @@ export const setLineStyle = (canvas, color, width = 3.5) => {
 
   if (color === 'purple') {
     canvas.fillStyle = 'rgba(204, 0, 255, 1)'
-    canvas.strokeStyle = 'rgba(204, 0, 255, 0.85)'
+    canvas.strokeStyle = 'rgba(204, 0, 255, 1)'
   } else if (color === 'blue') {
     canvas.fillStyle = 'rgba(0, 0, 255, 0.3)'
     canvas.strokeStyle = 'rgba(0, 0, 255, 0.8)'

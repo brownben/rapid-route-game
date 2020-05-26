@@ -1,6 +1,7 @@
 export default {
-  'Denny - Lockdown Easter Champs': {
+  Denny: {
     plannedBy: 'Jon Cross',
+    description: 'Created for the Lockdown Orienteering Easter Championships',
     penalty: 30,
     showSolution: true,
     legs: [
@@ -422,6 +423,7 @@ export default {
     penalty: 30,
     timeLimit: 60,
     showSolution: true,
+    undoButton: true,
     legs: [
       {
         imageLocation: '/bughtlin/Bughtlin1.jpg',

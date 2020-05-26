@@ -1,12 +1,14 @@
 <template>
   <div
     id="breadcrumbs"
-    class="w-full h-12 bg-blue-500 fixed top-0 left-0 text-white select-none shadow-lg"
+    class="w-full h-12 bg-purple fixed bottom-0 left-0 text-white select-none shadow-lg text-center"
   >
     <span v-for="item in list" id="all" :key="item">
       <span
         class="h-12 px-3 mx-1 font-semibold inline-block py-3"
-        :class="{ 'bg-blue-600 font-bold': item === currentItem }"
+        :class="{
+          'bg-purple-darker font-bold': item === currentItem,
+        }"
       >
         {{ item }}
       </span>

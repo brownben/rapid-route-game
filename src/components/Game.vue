@@ -1,49 +1,59 @@
 <template>
   <div class="mb-6">
+    <h2
+      :class="{ 'text-red-600': overTimeLimit }"
+      class="font-main font-semibold text-xl pb-3 select-none"
+    >
+      <template v-if="!finished">
+        Time:
+        <span v-if="started">{{
+          ((currentTime - startTime) / 1000).toFixed(1)
+        }}</span>
+        <span v-else>0.0</span>
+      </template>
+      <template v-else>
+        Time:
+        <span v-if="started">{{
+          ((finishTime - startTime) / 1000).toFixed(1)
+        }}</span>
+      </template>
+    </h2>
+
     <canvas id="canvas" width="500" height="500" class="border inline-block">
       <p>Sorry, this game doesn't work without the Canvas Enabled</p>
     </canvas>
 
-    <div v-if="started" class="time select-none">
-      <h2
-        :class="{ 'text-red-600': overTimeLimit }"
-        class="font-main font-semibold text-2xl mt-4 select-none"
-      >
-        <template v-if="!finished">
-          Time: {{ ((currentTime - startTime) / 1000).toFixed(1) }}
-        </template>
-        <template v-else>
-          Time: {{ ((finishTime - startTime) / 1000).toFixed(1) }}
-        </template>
-      </h2>
-    </div>
-
     <div v-if="!started && !finished" class="beforeStart mt-6">
-      <button v-show="imageLoaded" class="button green" @click="startGame">
+      <button v-show="imageLoaded" class="button" @click="startGame">
         Start
       </button>
     </div>
 
     <div v-if="started && !finished && settings.undoButton" class="mt-6">
-      <button v-show="imageLoaded" class="button white small" @click="undo">
+      <button v-show="imageLoaded" class="button-secondary" @click="undo">
         Undo
       </button>
     </div>
 
     <div v-if="finished" class="result">
-      <h1 v-if="correct" class="heading text-3xl my-3">Correct Route</h1>
-      <h1 v-else class="heading text-3xl my-3">Incorrect Route</h1>
+      <h1 v-if="correct" class="font-semibold font-heading text-4xl my-2">
+        Correct Route
+      </h1>
+      <h1 v-else class="font-semibold font-heading text-4xl my-2">
+        Incorrect Route
+      </h1>
 
       <button
         v-if="
           settings.showCorrectRoute && !drawnCorrectRoute && !settings.hideMap
         "
-        class="button blue mx-2 mt-2"
+        class="button-secondary mx-2 mt-2"
         @click="drawCorrectPath"
       >
         Draw Correct Route
       </button>
-      <button class="button pink mt-2" @click="$emit('nextLeg')">
+
+      <button class="button mt-2" @click="$emit('nextLeg')">
         Next Leg
       </button>
     </div>

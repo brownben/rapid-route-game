@@ -23,6 +23,7 @@ module.exports = {
         'Helvetica Neue',
         'sans-serif',
       ],
+      heading: ['kanit', 'system-ui', '-apple-system', 'Ubuntu', 'sans-serif'],
     },
 
     borderRadius: {
@@ -31,6 +32,33 @@ module.exports = {
       md: '.25rem',
       lg: '.5rem',
       xl: '1rem',
+    },
+
+    extend: {
+      colors: {
+        white: {
+          default: 'white',
+          translucent: '#fffe',
+        },
+        dark: {
+          '100': '#fafafa',
+          '200': '#eaeaea',
+          '300': '#999',
+          '400': '#888',
+          '500': '#666',
+          '600': '#444',
+          '700': '#333',
+          '800': '#111',
+        },
+        purple: {
+          light: '#d633ff',
+          lighter: '#d11aff',
+          default: '#CC00FF',
+          darker: '#b800e6',
+          dark: '#a300cc',
+          darkest: '#520066',
+        },
+      },
     },
   },
   variants: {},
