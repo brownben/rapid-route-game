@@ -1,5 +1,5 @@
 <template>
-  <div class="h-full bg-dark-100 flex flex-col items-center pb-6">
+  <div class="h-min-full bg-dark-100 flex flex-col items-center pb-6">
     <AppHeader />
     <h1 class="font-heading font-semibold text-4xl text-center py-3">Events</h1>
 
