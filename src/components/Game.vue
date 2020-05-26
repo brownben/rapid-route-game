@@ -36,12 +36,12 @@
     </div>
 
     <div v-if="finished" class="result">
-      <h1 v-if="correct" class="font-semibold font-heading text-4xl my-2">
+      <h3 v-if="correct" class="font-semibold font-heading text-4xl my-2">
         Correct Route
-      </h1>
-      <h1 v-else class="font-semibold font-heading text-4xl my-2">
+      </h3>
+      <h3 v-else class="font-semibold font-heading text-4xl my-2">
         Incorrect Route
-      </h1>
+      </h3>
 
       <button
         v-if="

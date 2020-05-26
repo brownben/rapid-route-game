@@ -94,9 +94,9 @@
         <h1 class="font-heading font-black text-5xl m-0 text-center">
           Rapid Route - Creator
         </h1>
-        <h3 class="font-main font-semibold text-xl text-center">
+        <h2 class="font-main font-semibold text-xl text-center">
           Create Your Own Course!
-        </h3>
+        </h2>
       </div>
       <div v-if="stage === 'Select Image'" class="w-full">
         <label

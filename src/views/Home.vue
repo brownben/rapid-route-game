@@ -9,11 +9,11 @@
         <h1 class="font-heading font-black text-5xl sm:text-6xl m-0">
           Rapid Route
         </h1>
-        <h3 class="font-main font-semibold text-2xl">
+        <h2 class="font-main font-semibold text-2xl">
           Draw the Shortest Route!
-        </h3>
+        </h2>
         <router-link
-          to="/play/Denny"
+          to="/events"
           class="bg-purple hover:bg-purple-dark text-white font-heading font-semibold shadow-lg rounded-lg text-lg py-3/2 px-6 my-6 inline-block"
         >
           Play Now!
@@ -35,7 +35,7 @@
           alt="Route and Cursor"
           class="h-28 mb-2"
         />
-        <h4 class="text-2xl font-semibold font-heading">Simple to Use</h4>
+        <h3 class="text-2xl font-semibold font-heading">Simple to Use</h3>
         <p class="font-main w-48">Just Click Your Route.</p>
       </div>
 
@@ -45,9 +45,9 @@
           alt="Marking 'Dots' and Tick"
           class="h-28 mb-2"
         />
-        <h4 class="text-2xl font-semibold font-heading w-48">
+        <h3 class="text-2xl font-semibold font-heading w-48">
           Auto Marking
-        </h4>
+        </h3>
         <p class="font-main w-48">Instantly Told If Your Route Is Correct.</p>
       </div>
 
@@ -57,9 +57,9 @@
           alt="Complex Maze"
           class="h-28 mb-2"
         />
-        <h4 class="text-2xl font-semibold font-heading w-48">
+        <h3 class="text-2xl font-semibold font-heading w-48">
           Challenging
-        </h4>
+        </h3>
         <p class="font-main w-48">Puzzles to Challenge All.</p>
       </div>
       <div class="text-left px-8 md:px-10 pb-6 sm:pb-4">
@@ -68,9 +68,9 @@
           alt="Trophy and Fireworks"
           class="h-28 mb-2"
         />
-        <h4 class="text-2xl font-semibold font-heading w-48">
+        <h3 class="text-2xl font-semibold font-heading w-48">
           Benificial
-        </h4>
+        </h3>
         <p class="font-main w-48">
           Improve Your Orienteering. Become a Champion.
         </p>

@@ -1,9 +1,9 @@
 <template>
   <div class="flex items-center text-center flex-col min-h-full">
     <template v-if="legNumber <= course.legs.length">
-      <h3 class="font-heading font-semibold text-3xl pt-4 pb-3 select-none">
+      <h1 class="font-heading font-semibold text-3xl pt-4 pb-3 select-none">
         Leg: {{ legNumber }}
-      </h3>
+      </h1>
       <Game
         :key="legNumber"
         :settings="gameSettings"
