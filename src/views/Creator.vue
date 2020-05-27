@@ -1,8 +1,7 @@
 <template>
   <div>
-    <div
-      class="fixed bottom-12 w-full py-6 overflow-y-auto h-full--12 flex flex-col items-center"
-    >
+    <AppHeader />
+    <div class="w-full py-6 h-full flex flex-col items-center">
       <div class="button-grid w-full">
         <template v-if="stage === 'Centre Leg'">
           <div class="r1 c2">
@@ -87,17 +86,7 @@
           </canvas>
         </div>
       </div>
-      <div
-        v-if="stage === 'Select Image'"
-        class="w-full text-center pt-4 pb-12"
-      >
-        <h1 class="font-heading font-black text-5xl m-0 text-center">
-          Rapid Route - Creator
-        </h1>
-        <h2 class="font-main font-semibold text-xl text-center">
-          Create Your Own Course!
-        </h2>
-      </div>
+
       <div v-if="stage === 'Select Image'" class="w-full">
         <label
           for="image"
@@ -272,13 +261,12 @@
         @changeStage="changeStage"
       />
     </div>
-    <Breadcrumbs :list="stages" :currentItem="stage" />
   </div>
 </template>
 
 <script>
+import AppHeader from '@/components/AppHeader'
 import ForwardsBackwards from '@/components/ForwardsBackwards'
-import Breadcrumbs from '@/components/Breadcrumbs'
 
 import {
   drawRing,
@@ -292,8 +280,8 @@ import { findImageScale } from '@/scripts/ImageScale'
 
 export default {
   components: {
+    AppHeader,
     ForwardsBackwards,
-    Breadcrumbs,
   },
 
   data: () => ({
@@ -658,7 +646,7 @@ canvas {
 
 input {
   @apply my-3;
-  @apply border-2 border-purple outline-none;
+  @apply border-2 border-purple outline-none bg-transparent;
   width: 70%;
   margin-left: 15%;
   margin-right: 15%;
@@ -676,15 +664,8 @@ textarea {
   width: 70%;
   margin-left: 15%;
   margin-right: 15%;
+  @apply bg-transparent p-1;
   transition: 0.5s;
-}
-
-.bottom-12 {
-  bottom: 3rem;
-}
-
-.h-full--12 {
-  height: calc(100% - 3rem);
 }
 
 .button-grid {

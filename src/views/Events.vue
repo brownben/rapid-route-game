@@ -1,12 +1,14 @@
 <template>
-  <div class="h-min-full bg-dark-100 flex flex-col items-center pb-6">
+  <div
+    class="h-min-full bg-dark-100 flex flex-col items-center pb-6 dark:bg-dark-800"
+  >
     <AppHeader />
     <h1 class="font-heading font-semibold text-4xl text-center py-3">Events</h1>
 
     <div
       v-for="event of Object.keys(courses)"
       :key="event"
-      class="bg-white inline-block shadow-lg hover:shadow-xl w-10/12 md:w-3/4 lg:w-2/3 px-6 pb-3 my-4 rounded-lg text-center"
+      class="bg-white inline-block shadow-lg hover:shadow-xl w-10/12 md:w-3/4 lg:w-2/3 px-6 pb-3 my-4 rounded-lg text-center dark:bg-dark-600"
     >
       <h2 class="font-semibold font-heading text-3xl pt-4 pb-4">
         {{ event }}

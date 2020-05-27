@@ -48,6 +48,20 @@ p {
   @apply font-main;
 }
 
+@media (prefers-color-scheme: dark) {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  span,
+  a,
+  p {
+    @apply text-white;
+  }
+}
+
 a,
 button {
   transition: 0.5s;
@@ -66,12 +80,27 @@ button {
 
 .button-secondary {
   @apply font-main text-purple-darkest bg-white rounded-lg px-4 py-3/2 font-semibold font-main mx-2 border border-dark-200 inline-block outline-none select-none;
+  transition: 0.5s;
 }
 .button-secondary:hover,
 .button-secondary:focus {
   @apply border-purple-dark shadow-md;
 }
 
+@media (prefers-color-scheme: dark) {
+  .button {
+    @apply text-dark-900;
+  }
+
+  .button-secondary {
+    @apply text-white bg-transparent;
+  }
+  .button-secondary:hover,
+  .button-secondary:focus {
+    @apply border-white;
+    background: #fff4;
+  }
+}
 .py-3\/2 {
   padding-top: 0.375rem;
   padding-bottom: 0.375rem;

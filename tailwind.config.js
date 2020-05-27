@@ -44,11 +44,10 @@ module.exports = {
           '100': '#fafafa',
           '200': '#eaeaea',
           '300': '#999',
-          '400': '#888',
-          '500': '#666',
-          '600': '#444',
-          '700': '#333',
-          '800': '#111',
+          '900': '#121212',
+          '800': '#212121',
+          '600': '#424242',
+          translucent: '#212121ee',
         },
         purple: {
           light: '#d633ff',
@@ -58,6 +57,10 @@ module.exports = {
           dark: '#a300cc',
           darkest: '#520066',
         },
+      },
+
+      screens: {
+        dark: { raw: '(prefers-color-scheme: dark)' },
       },
     },
   },

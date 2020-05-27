@@ -6,7 +6,7 @@
       class="bg-dark-200 text-center py-8 flex flex-col items-center justify-center md:flex-row border-b border-dark-200 justify-around"
     >
       <div class="md:w-1/2">
-        <h1 class="font-heading font-black text-5xl sm:text-6xl m-0">
+        <h1 class="font-heading font-black text-5xl sm:text-6xl px-2 m-0">
           Rapid Route
         </h1>
         <h2 class="font-main font-semibold text-2xl">
@@ -14,7 +14,7 @@
         </h2>
         <router-link
           to="/events"
-          class="bg-purple hover:bg-purple-dark text-white font-heading font-semibold shadow-lg rounded-lg text-lg py-3/2 px-6 my-6 inline-block"
+          class="bg-purple hover:bg-purple-dark text-white font-heading font-semibold shadow-lg rounded-lg text-lg py-3/2 px-6 my-6 inline-block dark:text-dark-900 select-none"
         >
           Play Now!
         </router-link>
@@ -27,7 +27,7 @@
       />
     </div>
     <div
-      class="bg-white pb-0 pt-8 text-center border-b border-dark-200 flex flex-row flex-wrap items-start justify-center"
+      class="bg-white pb-0 pt-8 text-center border-b border-dark-200 flex flex-row flex-wrap items-start justify-center dark:bg-dark-900"
     >
       <div class="text-left px-8 md:px-10 pb-6 sm:pb-4">
         <img
@@ -76,11 +76,13 @@
         </p>
       </div>
     </div>
-    <div id="events  w-28" class="bg-dark-100 text-center">
+    <div class="bg-dark-100 text-center dark:bg-dark-800">
       <h2 class="font-main font-semibold text-4xl py-3 font-heading">Events</h2>
       <div class="align-top md:w-10/12 md:mx-1/12 xl:w-8/12 xl:mx-2/12">
         <div class="w-full md:w-1/2 p-6 pt-3 inline-block">
-          <div class="shadow-lg bg-white px-6 pb-3 first:mt-0 rounded-lg">
+          <div
+            class="shadow-lg bg-white px-6 pb-3 first:mt-0 rounded-lg dark:bg-dark-600"
+          >
             <h3 class="font-semibold font-heading text-2xl pt-3 pb-2">Denny</h3>
             <p>
               22 Legs Around Denny, Falkirk - Used for the Lockdown Easter
@@ -94,7 +96,9 @@
           </div>
         </div>
         <div class="align-top w-full md:w-1/2 p-6 pt-3 inline-block">
-          <div class="shadow-lg bg-white px-6 pb-3 first:mt-0 rounded-lg">
+          <div
+            class="shadow-lg bg-white px-6 pb-3 first:mt-0 rounded-lg dark:bg-dark-600"
+          >
             <h3 class="font-semibold font-heading text-2xl pt-3 pb-2">
               Bughtlin
             </h3>
@@ -111,11 +115,11 @@
       >
     </div>
     <div>
-      <p class="border-t w-full border-dark-200 p-3 text-center">
+      <p
+        class="border-t w-full border-dark-200 p-3 text-center dark:text-white dark:bg-dark-900"
+      >
         Created By
-        <a
-          href="https://brownben.github.io"
-          class="text-black font-heading font-semibold"
+        <a href="https://brownben.github.io" class="font-heading font-semibold"
           >Ben Brown</a
         >
       </p>
@@ -142,6 +146,15 @@ export default {
     #e8e8e8 0,
     #fafafa 100%
   );
+}
+@media (prefers-color-scheme: dark) {
+  #main {
+    background-image: radial-gradient(
+      70% 70% at 50% 100%,
+      #444444 0,
+      #212121 100%
+    );
+  }
 }
 
 @media (max-width: 768px) {
