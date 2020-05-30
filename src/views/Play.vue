@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center text-center flex-col min-h-full">
+  <div class="flex items-center text-center flex-col min-h-full h-full w-full">
     <template v-if="legNumber <= course.legs.length">
       <h1 class="font-heading font-semibold text-3xl pt-4 pb-3 select-none">
         Leg: {{ legNumber }}

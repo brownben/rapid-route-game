@@ -1,5 +1,5 @@
 <template>
-  <div class="py-6">
+  <div class="py-6 w-full h-full flex flex-col items-center justify-center">
     <h1 class="font-semibold font-heading text-5xl my-2">Well Done!</h1>
     <h2 class="font-semibold font-main text-2xl mt-3">Score: {{ score }}</h2>
     <h2 class="font-semibold font-main text-2xl mb-3">

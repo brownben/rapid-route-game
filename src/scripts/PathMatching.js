@@ -87,13 +87,26 @@ const checkIfLineInCircle = (point, path, sensitivity = 10) => {
   return false
 }
 
+const checkIfPointInCircle = (point, path, sensitivity = 10) => {
+  let currentPoint = 1
+  while (currentPoint < path.length) {
+    if (pointInCircle(point, path[currentPoint], sensitivity)) return true
+    currentPoint += 1
+  }
+  return false
+}
+
 export const comparePath = (compulsoryPoints, disallowedPoints, path) => {
-  const checkCompulsoryPoints = compulsoryPoints.map((point) =>
-    checkIfLineInCircle(point.location, path, point.size)
+  const checkCompulsoryPoints = compulsoryPoints.map(
+    (point) =>
+      checkIfLineInCircle(point.location, path, point.size) ||
+      checkIfPointInCircle(point.location, path, point.size)
   )
 
-  const checkDisallowedPoints = disallowedPoints.map((point) =>
-    checkIfLineInCircle(point.location, path, point.size)
+  const checkDisallowedPoints = disallowedPoints.map(
+    (point) =>
+      checkIfLineInCircle(point.location, path, point.size) ||
+      checkIfPointInCircle(point.location, path, point.size)
   )
 
   return {
