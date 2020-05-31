@@ -2,6 +2,10 @@
   <div>
     <AppHeader />
     <div class="w-full py-6 h-full flex flex-col items-center">
+      <h1 v-if="stage === 'Select Image'" class="font-heading text-4xl py-6">
+        Rapid Route - Creator
+      </h1>
+
       <div class="button-grid w-full">
         <template v-if="stage === 'Centre Leg'">
           <div class="r1 c2">
@@ -178,6 +182,9 @@
           Route Distance: {{ pathLength(correctPath).toFixed(1) }}
         </h3>
 
+        <button class="button-secondary mx-2 mt-6" @click="undoCorrectRoute">
+          Undo
+        </button>
         <button
           class="button-secondary mx-2 mt-6"
           @click="clearPoints('correctPath')"
@@ -235,7 +242,7 @@
           </button>
           <button
             v-if="output"
-            class="button black mx-2"
+            class="button-secondary black mx-2"
             @click="copyOuputToClipboard"
           >
             Copy Output to Clipboard
@@ -243,7 +250,7 @@
           <a
             v-if="newImage"
             :href="newImage"
-            class="button black mx-2"
+            class="button-secondary black mx-2"
             target="_blank"
             rel="noopener noreferrer"
             download="Map"
@@ -562,6 +569,14 @@ export default {
       this.drawPoints()
     },
 
+    undoCorrectRoute: function () {
+      this.correctPath.pop()
+      if (this.correctPath.length === 0)
+        this.correctPath.push(this.startLocation)
+
+      this.drawPoints()
+    },
+
     drawPoints: function () {
       // Draw Map Again to Blank Previous Versions
       this.drawImage()
@@ -610,7 +625,7 @@ export default {
 
       this.output = JSON.stringify({
         imageLocation: image,
-        scale: scale,
+        scale: scale.toFixed(2),
         startLocation: this.startLocation,
         finishLocation: this.finishLocation,
         compulsoryPoints: this.compulsoryPoints,
@@ -657,7 +672,7 @@ input:focus,
 input:active,
 textarea:focus,
 textarea:active {
-  @apply border-2 border-purple-darkest;
+  @apply border-2 border-purple-dark;
 }
 
 textarea {

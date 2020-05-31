@@ -1,9 +1,10 @@
-<template>
-  <div
-    id="header"
+<template functional>
+  <header
     class="sticky top-0 z-5 w-full h-14 border-b border-dark-200 bg-white-translucent dark:bg-dark-translucent flex items-center justify-center md:justify-between"
   >
-    <router-link to="/" class="text-2xl font-semibold font-heading ml-10per"
+    <router-link
+      to="/"
+      class="text-2xl font-semibold font-heading ml-10per select-none"
       >Rapid Route</router-link
     >
     <router-link
@@ -12,7 +13,7 @@
     >
       Play!
     </router-link>
-  </div>
+  </header>
 </template>
 <style>
 .h-14 {
