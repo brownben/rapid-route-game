@@ -51,6 +51,7 @@ export default {
         penalty: this.course.penalty,
         timeLimit: this.course.timeLimit,
         undoButton: this.course.undoButton,
+        undoPenalty: this.course.undoPenalty,
       }
     },
 

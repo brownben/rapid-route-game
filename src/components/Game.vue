@@ -218,6 +218,10 @@ export default {
 
     undo: function () {
       this.userPath.pop()
+
+      if (this.settings.undoPenalty)
+        this.startTime -= this.settings.undoPenalty * 1000
+
       if (this.userPath.length === 0)
         this.userPath.push(this.settings.startLocation)
 

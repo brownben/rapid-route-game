@@ -6,7 +6,6 @@
         Events
       </h1>
 
-      <p v-if="courses[event].undoButton">There is an Undo Button.</p>
       <div
         v-for="event of Object.keys(courses)"
         :key="event"
@@ -31,6 +30,12 @@
         <p v-if="courses[event].timeLimit">
           There is a maximum time of {{ courses[event].timeLimit }}s to complete
           each leg.
+        </p>
+        <p v-if="courses[event].undoButton">
+          There is an Undo button<template v-if="courses[event].undoPenalty"
+            >, but there is a penalty of {{ courses[event].undoPenalty }}s for
+            using it</template
+          >.
         </p>
         <router-link :to="`/play/${event}`" class="button-secondary mt-5"
           >Start Game</router-link
